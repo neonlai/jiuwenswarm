@@ -20,6 +20,7 @@ import type {
   ApplicationPluginContribution,
   ApplicationPluginNavKey,
 } from '../../applicationPlugins/types';
+import { OidcAccountButton } from '../../auth/oidc/OidcAccountButton';
 import { EnterpriseContextSwitcher } from './EnterpriseContextSwitcher';
 
 type MainNavKey = SidebarNavKey | 'connectorMarket' | ApplicationPluginNavKey;
@@ -178,6 +179,7 @@ export function SessionSidebar({
       ))}
 
       <div className="icon-rail-spacer" />
+      <OidcAccountButton />
       <EnterpriseContextSwitcher />
     </aside>
   );

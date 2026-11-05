@@ -5253,6 +5253,11 @@
         "resetEveryMonthsPlain": "Credits refresh every {{count}} months.",
         "resetNext": "Next credit refresh: {{date}}."
       }
+    },
+    "oidc": {
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "account": "Signed in"
     }
   },
   "heartbeat": {

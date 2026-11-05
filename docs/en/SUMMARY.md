@@ -9,6 +9,7 @@
 - [A2UI generated UI](A2UI.md)
 - [Project & Session Management (Web)](Project-Session-Management.md)
 - [Configuration](Configuration.md)
+- [OpenID Connect sign-in](OIDC.md)
 - [Distributed Team](DistributedTeam.md)
 - [Team Organization](TeamOrganization.md)
   - [Expert and Summary Team Configuration](TeamOrganizationExpertAndSummary.md)

@@ -33,6 +33,11 @@ _EXPORTS = {
     "AuthSession": ".session_store",
     "AuthSessionStore": ".session_store",
     "get_session_store": ".session_store",
+    "OidcConfig": ".oidc.config",
+    "OnBehalfOfRequest": ".oidc.obo",
+    "OnBehalfOfResult": ".oidc.obo",
+    "exchange_on_behalf_of": ".oidc.obo",
+    "load_oidc_config": ".oidc.config",
 }
 
 __all__ = [
@@ -45,7 +50,12 @@ __all__ = [
     "ModelAuthRequired",
     "OAuthConfig",
     "OAuthError",
+    "OidcConfig",
+    "OnBehalfOfRequest",
+    "OnBehalfOfResult",
+    "exchange_on_behalf_of",
     "get_auth_service",
+    "load_oidc_config",
     "get_session_store",
     "live_session",
     "login_enabled",

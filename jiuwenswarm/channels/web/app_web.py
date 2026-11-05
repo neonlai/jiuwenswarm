@@ -668,6 +668,7 @@ class _SpaStaticHandler(SimpleHTTPRequestHandler):
                     continue
                 forward_headers[key] = value
             forward_headers["Host"] = outer_host
+            self._attach_oidc_user_token(forward_headers)
 
             conn.request(self.command, self.path, body=body, headers=forward_headers)
             resp = conn.getresponse()
@@ -756,6 +757,9 @@ class _SpaStaticHandler(SimpleHTTPRequestHandler):
                     request_lines.append(f"{key}: {value}")
             if not any(line.lower().startswith("host:") for line in request_lines[1:]):
                 request_lines.append(f"Host: {upstream_host}:{upstream_port}")
+            user_token = self._oidc_user_token()
+            if user_token and not any(line.lower().startswith("x-user-token:") for line in request_lines):
+                request_lines.append(f"X-User-Token: {user_token}")
             raw_req = ("\r\n".join(request_lines) + "\r\n\r\n").encode("utf-8")
             upstream.sendall(raw_req)
 
@@ -2266,7 +2270,45 @@ class _SpaStaticHandler(SimpleHTTPRequestHandler):
         )
         self._write_json(status, payload)
 
+    def _oidc_preface(self) -> bool:
+        """Handle OIDC routes, and gate the rest when sign-in is required.
+
+        Unconfigured OIDC returns immediately, so local and Huawei login stay
+        on their existing paths.
+        """
+        try:
+            from jiuwenswarm.channels.web.oidc_http import block_if_required, try_handle
+        except Exception:
+            self.log_error("oidc adapter unavailable")
+            return False
+        try:
+            if try_handle(self):
+                return True
+            if block_if_required(self):
+                return True
+        except Exception:
+            self.log_error("oidc request failed")
+            self._write_json(500, {"error": "oidc_internal"})
+            return True
+        return False
+
+    def _oidc_user_token(self) -> str:
+        try:
+            from jiuwenswarm.channels.web.oidc_http import user_token_header
+        except Exception:
+            return ""
+        return user_token_header(self.headers.get("Cookie", ""))
+
+    def _attach_oidc_user_token(self, headers: dict[str, str]) -> None:
+        if any(key.lower() == "x-user-token" for key in headers):
+            return
+        token = self._oidc_user_token()
+        if token:
+            headers["X-User-Token"] = token
+
     def do_GET(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         parsed = urlparse(self.path)
         if parsed.path == "/oauth/hub/callback":
             from jiuwenswarm.channels.web.hub_oauth import complete
@@ -2309,6 +2351,8 @@ class _SpaStaticHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_POST(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         parsed = urlparse(self.path)
         if parsed.path in {"/marketplace-oauth/hub/start", "/marketplace-oauth/hub/result"}:
             from jiuwenswarm.channels.web.hub_oauth import result, start
@@ -2354,26 +2398,36 @@ class _SpaStaticHandler(SimpleHTTPRequestHandler):
         self.send_error(405, "method not allowed")
 
     def do_PUT(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         if self._dispatch_proxy():
             return
         self.send_error(405, "method not allowed")
 
     def do_PATCH(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         if self._dispatch_proxy():
             return
         self.send_error(405, "method not allowed")
 
     def do_DELETE(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         if self._dispatch_proxy():
             return
         self.send_error(405, "method not allowed")
 
     def do_OPTIONS(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         if self._dispatch_proxy():
             return
         self.send_error(405, "method not allowed")
 
     def do_HEAD(self) -> None:  # noqa: N802
+        if self._oidc_preface():
+            return
         parsed = urlparse(self.path)
         if self._is_share_api_route():
             self._handle_share_api_get(parsed)
