@@ -1,7 +1,7 @@
 ---
 title: 当前规约 S索引
-author: xinyang_bali
-author_email: 835397263@qq.com
+author: Cursor Agent
+author_email: cursoragent@cursor.com
 generated: true
 ---
 
@@ -17,11 +17,13 @@ generated: true
 |---|
 | [jiuwenswarm/agents/harness/common/rails](#module-1) |
 | [jiuwenswarm/agents/harness/common/tools](#module-2) |
-| [jiuwenswarm/channels/web/frontend](#module-3) |
-| [jiuwenswarm/extensions/sdk](#module-4) |
-| [jiuwenswarm/resources/plugins/ttse](#module-5) |
-| [jiuwenswarm/server/runtime/agent_adapter](#module-6) |
-| [未分类](#module-7) |
+| [jiuwenswarm/channels/web](#module-3) |
+| [jiuwenswarm/channels/web/frontend](#module-4) |
+| [jiuwenswarm/common/auth/oidc](#module-5) |
+| [jiuwenswarm/extensions/sdk](#module-6) |
+| [jiuwenswarm/resources/plugins/ttse](#module-7) |
+| [jiuwenswarm/server/runtime/agent_adapter](#module-8) |
+| [未分类](#module-9) |
 
 <a id="module-1"></a>
 
@@ -41,13 +43,29 @@ generated: true
 
 <a id="module-3"></a>
 
+## jiuwenswarm/channels/web
+
+| ID / 文档 | 类型 | 标题 | 作者 | 模块 | 代码文件 | 关联 D |
+|---|---|---|---|---|---|---|
+| [S_01_oidc-login](jiuwenswarm/common/auth/S_01_oidc-login.md) | S | Web 通道 OpenID Connect 登录 | Cursor Agent | jiuwenswarm/common/auth/oidc, jiuwenswarm/channels/web | jiuwenswarm/common/auth/oidc/config.py, jiuwenswarm/common/auth/oidc/protocol.py, jiuwenswarm/common/auth/oidc/http_api.py, jiuwenswarm/common/auth/oidc/obo.py, jiuwenswarm/channels/web/oidc_http.py, jiuwenswarm/channels/web/app_web.py | — |
+
+<a id="module-4"></a>
+
 ## jiuwenswarm/channels/web/frontend
 
 | ID / 文档 | 类型 | 标题 | 作者 | 模块 | 代码文件 | 关联 D |
 |---|---|---|---|---|---|---|
 | [S_01_app-agent-interaction](mcpApps/S_01_app-agent-interaction.md) | S | MCP App 到 Agent 交互规约 | LI Jinyang | jiuwenswarm/channels/web/frontend, jiuwenswarm/server/runtime/agent_adapter | jiuwenswarm/channels/web/frontend/src/features/mcpApps/mcpAppContext.ts, jiuwenswarm/channels/web/frontend/src/components/ChatPanel/McpAppView.tsx, jiuwenswarm/channels/web/frontend/src/hooks/useWebSocket.ts, jiuwenswarm/server/runtime/agent_adapter/user_turn.py | — |
 
-<a id="module-4"></a>
+<a id="module-5"></a>
+
+## jiuwenswarm/common/auth/oidc
+
+| ID / 文档 | 类型 | 标题 | 作者 | 模块 | 代码文件 | 关联 D |
+|---|---|---|---|---|---|---|
+| [S_01_oidc-login](jiuwenswarm/common/auth/S_01_oidc-login.md) | S | Web 通道 OpenID Connect 登录 | Cursor Agent | jiuwenswarm/common/auth/oidc, jiuwenswarm/channels/web | jiuwenswarm/common/auth/oidc/config.py, jiuwenswarm/common/auth/oidc/protocol.py, jiuwenswarm/common/auth/oidc/http_api.py, jiuwenswarm/common/auth/oidc/obo.py, jiuwenswarm/channels/web/oidc_http.py, jiuwenswarm/channels/web/app_web.py | — |
+
+<a id="module-6"></a>
 
 ## jiuwenswarm/extensions/sdk
 
@@ -55,7 +73,7 @@ generated: true
 |---|---|---|---|---|---|---|
 | [S_03_native-plugin-runtime](jiuwenswarm/server/runtime/agent_adapter/S_03_native-plugin-runtime.md) | S | 原生插件通用运行服务与生命周期 | xinyang_bali | jiuwenswarm/server/runtime/agent_adapter, jiuwenswarm/extensions/sdk | jiuwenswarm/server/runtime/agent_adapter/plugin_runtime.py, jiuwenswarm/extensions/sdk/plugin_runtime.py | — |
 
-<a id="module-5"></a>
+<a id="module-7"></a>
 
 ## jiuwenswarm/resources/plugins/ttse
 
@@ -63,7 +81,7 @@ generated: true
 |---|---|---|---|---|---|---|
 | [S_02_ttse-plugin-runtime](jiuwenswarm/server/runtime/agent_adapter/S_02_ttse-plugin-runtime.md) | S | TTSE Coding 插件运行契约 | xinyang_bali | jiuwenswarm/resources/plugins/ttse | jiuwenswarm/resources/plugins/ttse/rails/ttse_plugin_rail.py, jiuwenswarm/resources/plugins/ttse/manifest.json | — |
 
-<a id="module-6"></a>
+<a id="module-8"></a>
 
 ## jiuwenswarm/server/runtime/agent_adapter
 
@@ -73,7 +91,7 @@ generated: true
 | [S_01_tool-discovery-language](jiuwenswarm/agents/harness/common/tools/S_01_tool-discovery-language.md) | S | 渐进式工具发现语言与原始执行契约 | MengHan18 | jiuwenswarm/agents/harness/common/tools, jiuwenswarm/agents/harness/common/rails, jiuwenswarm/server/runtime/agent_adapter | jiuwenswarm/agents/harness/common/tools/tool_discovery_catalog.py, jiuwenswarm/agents/harness/common/tools/tool_retrieval_toolkits.py, jiuwenswarm/agents/harness/common/rails/tool_retrieval_prompt_rail.py, jiuwenswarm/agents/harness/code/rails/heartbeat_rail.py, jiuwenswarm/agents/harness/team/rails/team_member_skill_toolkit_rail.py, jiuwenswarm/server/runtime/agent_adapter/interface_deep.py, jiuwenswarm/server/runtime/agent_adapter/interface_code.py | — |
 | [S_03_native-plugin-runtime](jiuwenswarm/server/runtime/agent_adapter/S_03_native-plugin-runtime.md) | S | 原生插件通用运行服务与生命周期 | xinyang_bali | jiuwenswarm/server/runtime/agent_adapter, jiuwenswarm/extensions/sdk | jiuwenswarm/server/runtime/agent_adapter/plugin_runtime.py, jiuwenswarm/extensions/sdk/plugin_runtime.py | — |
 
-<a id="module-7"></a>
+<a id="module-9"></a>
 
 ## 未分类
 

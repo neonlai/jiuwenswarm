@@ -1884,3 +1884,19 @@ recommendation:
   # 话题推荐模型：models 中某个模型的 model_id。
   # 未配置时为空，不自动使用聊天模型。
   model: ""
+
+# OpenID Connect sign-in. Leave issuer empty to keep the previous auth behavior
+# (Huawei Account Kit and unsigned local use). See docs/en/OIDC.md.
+oidc:
+  enabled: ${JIUWENSWARM_OIDC_ENABLED:-}
+  issuer: ${JIUWENSWARM_OIDC_ISSUER:-}
+  client_id: ${JIUWENSWARM_OIDC_CLIENT_ID:-}
+  client_secret: ${JIUWENSWARM_OIDC_CLIENT_SECRET:-}
+  redirect_uri: ${JIUWENSWARM_OIDC_REDIRECT_URI:-}
+  scopes: ${JIUWENSWARM_OIDC_SCOPES:-openid profile email}
+  pkce: ${JIUWENSWARM_OIDC_PKCE:-true}
+  required: ${JIUWENSWARM_OIDC_REQUIRED:-false}
+  post_logout_redirect_uri: ${JIUWENSWARM_OIDC_POST_LOGOUT_REDIRECT_URI:-}
+  resource: ${JIUWENSWARM_OIDC_RESOURCE:-}
+  obo_enabled: ${JIUWENSWARM_OIDC_OBO_ENABLED:-false}
+  cookie_secure: ${JIUWENSWARM_OIDC_COOKIE_SECURE:-}

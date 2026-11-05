@@ -5190,6 +5190,11 @@
         "resetEveryMonthsPlain": "每 {{count}} 个月刷新一次积分",
         "resetNext": "下次刷新积分：{{date}}"
       }
+    },
+    "oidc": {
+      "signIn": "登录",
+      "signOut": "退出",
+      "account": "已登录"
     }
   },
   "heartbeat": {

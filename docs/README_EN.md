@@ -111,6 +111,11 @@ This page collects common JiuwenSwarm usage instructions, feature documentation,
       <td width="50%">System parameters, LLM APIs, and runtime environment configuration.</td>
     </tr>
     <tr>
+      <td width="22%"><strong>OpenID Connect</strong></td>
+      <td width="28%"><a href="en/OIDC.md">OIDC sign-in</a></td>
+      <td width="50%">Optional ADFS-compatible OIDC login. Unset settings leave the previous sign-in behavior in place.</td>
+    </tr>
+    <tr>
       <td width="22%"><strong>Process CLI Model Configuration</strong></td>
       <td width="28%"><a href="en/Process_CLI_Model.md">Model connection flags</a></td>
       <td width="50%">Select a model, API base, key environment variable, and provider for one CMD invocation.</td>

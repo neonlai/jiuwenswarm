@@ -121,6 +121,11 @@
       <td width="50%">系统参数、大模型 API、运行环境相关配置。</td>
     </tr>
     <tr>
+      <td width="22%"><strong>OpenID Connect</strong></td>
+      <td width="28%"><a href="zh/OIDC.md">OIDC 登录</a></td>
+      <td width="50%">可选的、兼容 ADFS 的 OIDC 登录。不配置时保持原有登录行为。</td>
+    </tr>
+    <tr>
       <td width="22%"><strong>进程式 CLI 模型配置</strong></td>
       <td width="28%"><a href="zh/Process_CLI_Model.md">非交互命令的模型连接配置</a></td>
       <td width="50%">通过 CMD 指定本次任务的模型、API 地址、密钥环境变量与协议提供方。</td>
